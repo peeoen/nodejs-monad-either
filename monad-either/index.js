@@ -95,10 +95,6 @@ async function csvToMessages(csvData) {
     const headerFields = csvRows.map(_.head).map(splitFields);
     const dataRows     = csvRows.map(_.tail);
     const datax =  await dataRows.chain(fetchData)
-    console.log(datax);
-    console.log(dataRows);
-
-    
     const processRowsA = liftA2(processRows);
     const messagesArr  = processRowsA(headerFields, dataRows);
 
@@ -113,12 +109,12 @@ async function csvToMessages(csvData) {
 // Data and Main code.
 // ---------------------------------------------------------------------------------
 
-// const csvData = `"datestamp","content","viewed","href", "a"
-// "2018-10-27T05:33:34+00:00","@madhatter invited you to tea","unread","https://example.com/invite/tea/3801"
-// "2018-10-26T13:47:12+00:00","@queenofhearts mentioned you in 'Croquet Tournament' discussion","viewed","https://example.com/discussions/croquet/1168"
-// "2018-10-25T03:50:08+00:00","@cheshirecat sent you a grin","unread","https://example.com/interactions/grin/88"`;
+const csvData = `"datestamp","content","viewed","href"
+"2018-10-27T05:33:34+00:00","@madhatter invited you to tea","unread","https://example.com/invite/tea/3801"
+"2018-10-26T13:47:12+00:00","@queenofhearts mentioned you in 'Croquet Tournament' discussion","viewed","https://example.com/discussions/croquet/1168"
+"2018-10-25T03:50:08+00:00","@cheshirecat sent you a grin","unread","https://example.com/interactions/grin/88"`;
 
-const csvData =  ""
+// const csvData =  ""
 
 const data = await csvToMessages(csvData)
 console.log(data);
